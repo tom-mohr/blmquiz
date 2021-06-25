@@ -23,10 +23,12 @@ export class MainComponent extends React.Component<any, MainComponentState> {
         };
     }
 
+    private moduleCreationProps: any = {onBackButtonClicked: () => this.setState({displayScreen: DisplayScreen.Overview})};
+
     private getDisplayScreenComponent(): JSX.Element {
         switch (this.state.displayScreen) {
             case DisplayScreen.Creation:
-                return <ModuleCreationComponent/>;
+                return <ModuleCreationComponent props = {this.moduleCreationProps}/>;
             case DisplayScreen.View:
                 return <></>;
             case DisplayScreen.Overview:

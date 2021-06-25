@@ -3,7 +3,7 @@ import {Button, Container, Grid, Paper, TextField} from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./ModuleCreationComponent.css";
 
-export default function ModuleCreationComponent(props) {
+export default function ModuleCreationComponent({props}) {
 //export class ModuleCreationComponent extends React.Component<MyProps, any> {
 
 	const styles = useStyles();
@@ -11,10 +11,10 @@ export default function ModuleCreationComponent(props) {
 	//render() {
 		return (
 			<div className={"creation-div"}>
-				<Button variant={"contained"} color={"primary"} onClick={() => { }}>Back!</Button>
+				<Button variant={"contained"} color={"primary"} onClick={props.onBackButtonClicked}>Back!</Button>
 				<Grid container className={styles.root} spacing={2} direction="row" justify="center">
 					<Grid item xs={12}>
-						<Paper>
+						<Paper >
 							Tools
 						</Paper>
 					</Grid>
