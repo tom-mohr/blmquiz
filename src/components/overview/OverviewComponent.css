@@ -1,0 +1,24 @@
+.overview-main-div {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.fab {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
+.overview-top {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
