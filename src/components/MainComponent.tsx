@@ -2,6 +2,7 @@ import * as React from "react";
 import "./MainComponent.css";
 import {OverviewComponent} from "./overview/OverviewComponent";
 import ModuleCreationComponent from "./creation/ModuleCreationComponent";
+import {ModuleViewComponent} from "./view/ModuleViewComponent";
 
 enum DisplayScreen {
     Overview = 0,
@@ -11,6 +12,7 @@ enum DisplayScreen {
 
 interface MainComponentState {
     displayScreen: DisplayScreen;
+    viewModuleId: number;
 }
 
 export class MainComponent extends React.Component<any, MainComponentState> {
@@ -20,6 +22,7 @@ export class MainComponent extends React.Component<any, MainComponentState> {
 
         this.state = {
             displayScreen: DisplayScreen.Overview,
+            viewModuleId: -1,
         };
     }
 
@@ -30,10 +33,12 @@ export class MainComponent extends React.Component<any, MainComponentState> {
             case DisplayScreen.Creation:
                 return <ModuleCreationComponent props = {this.moduleCreationProps}/>;
             case DisplayScreen.View:
-                return <></>;
+                return <ModuleViewComponent onBackButtonClicked={() => this.setState({displayScreen: DisplayScreen.Overview})}
+                                            viewModuleId={this.state.viewModuleId} />;
             case DisplayScreen.Overview:
             default:
                 return <OverviewComponent
+                    onModuleClicked={(id: number) => this.setState({displayScreen: DisplayScreen.View, viewModuleId: id})}
                     onCreateButtonClicked={() => this.setState({displayScreen: DisplayScreen.Creation})}
                 />;
         }

@@ -18,3 +18,17 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.overview-card-container {
+    width: fit-content;
+    height: 100%;
+    overflow: visible;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.overview-card-container-column {
+    display: flex;
+    flex-direction: column;
+}

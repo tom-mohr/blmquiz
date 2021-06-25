@@ -1,0 +1,41 @@
+.card-div {
+    border-radius: 24px;
+    width: 200px;
+    padding: 12px;
+    height: fit-content;
+    min-height: 100px;
+    box-shadow: 0 3px 15px 3px #00000014;
+
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    cursor: pointer;
+
+    transition: 0.1s linear transform, 0.1s linear box-shadow;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.card-div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px 3px #00000033;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-img-wrapper {
+    border-radius: 15px;
+    width: 200px;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+}
