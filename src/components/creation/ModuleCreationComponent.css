@@ -1,6 +1,12 @@
 .creation-div {
+  height: 100%;
+  width: 100%;
+  padding-top: 1cm;
+  padding-left: 1cm;
+  padding-right: 1cm;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
