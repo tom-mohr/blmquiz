@@ -15,7 +15,7 @@ export class OverviewComponent extends React.Component<OverviewComponentProps, a
                 <h1>Badisches Landesmuseum</h1>
             </div>
             <Fab
-                style={{position: "absolute", bottom: "10px", right: "10px"}}
+                style={{position: "absolute", bottom: "32px", right: "12px"}}
                 color="primary" aria-label="add"
                 onClick={() => this.props.onCreateButtonClicked()}>
                 <AddIcon />
