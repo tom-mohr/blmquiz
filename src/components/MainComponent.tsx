@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./MainComponent.css";
 import {OverviewComponent} from "./overview/OverviewComponent";
+import ModuleCreationComponent from "./creation/ModuleCreationComponent";
 
 enum DisplayScreen {
     Overview = 0,
@@ -25,7 +26,7 @@ export class MainComponent extends React.Component<any, MainComponentState> {
     private getDisplayScreenComponent(): JSX.Element {
         switch (this.state.displayScreen) {
             case DisplayScreen.Creation:
-                return <></>;
+                return <ModuleCreationComponent/>;
             case DisplayScreen.View:
                 return <></>;
             case DisplayScreen.Overview:
