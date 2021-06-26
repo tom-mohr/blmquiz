@@ -1,0 +1,7 @@
+.quiz-view-answers-container {
+    width: 400px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

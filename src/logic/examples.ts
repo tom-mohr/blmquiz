@@ -4,7 +4,7 @@ export const exampleModules: Module[] = [
     {
         id: 0,
         title: "Welche Epoche passt am besten zu dir?",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Huber_Carl_III.Wilhelm.jpeg/512px-Huber_Carl_III.Wilhelm.jpeg",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Huber_Carl_III.Wilhelm.jpeg/256px-Huber_Carl_III.Wilhelm.jpeg",
         tools: [
             {
                 type: ToolType.Quiz,
@@ -30,6 +30,7 @@ export const exampleModules: Module[] = [
                             {
                                 title: "sehr wichtig",
                                 scoresDelta: [-2, -1, 1],
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/OCD_handwash.jpg/128px-OCD_handwash.jpg",
                             },
                             {
                                 title: "so mittel",
@@ -38,6 +39,7 @@ export const exampleModules: Module[] = [
                             {
                                 title: "völlig unwichtig",
                                 scoresDelta: [2, 1, -1],
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Paul_F%C3%BCrst%2C_Der_Doctor_Schnabel_von_Rom_%28coloured_version%29.png/128px-Paul_F%C3%BCrst%2C_Der_Doctor_Schnabel_von_Rom_%28coloured_version%29.png",
                             }
                         ],
                     },

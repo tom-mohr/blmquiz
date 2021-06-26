@@ -1,0 +1,11 @@
+.module-view-main-div {
+    align-self: flex-start;
+    width: 100%;
+    height: fit-content;
+    margin: 24px;
+}
+
+.module-view-image {
+    border-radius: 12px;
+    max-height: 500px;
+}

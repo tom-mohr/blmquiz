@@ -1,5 +1,10 @@
 import * as React from "react";
 import {Button} from "@material-ui/core";
+import {ModuleServerProvider} from "../../logic/module_server/ModuleServerProvider";
+import {Quiz, ToolType} from "../../logic/quiz";
+import {QuizViewComponent} from "./QuizViewComponent";
+import "./ModuleViewComponent.css";
+import {ArrowBack} from "@material-ui/icons";
 
 interface ModuleViewComponentProps {
     onBackButtonClicked: () => void;
@@ -8,10 +13,22 @@ interface ModuleViewComponentProps {
 
 export class ModuleViewComponent extends React.Component<ModuleViewComponentProps, any> {
     render() {
-        //todo
-        return <div>
-            <Button onClick={() => this.props.onBackButtonClicked()}>Zurück</Button>
-            <p>Modul-ID: {this.props.viewModuleId}</p>
+
+        const module = ModuleServerProvider.getServer().getModule(this.props.viewModuleId);
+
+        return <div className={"module-view-main-div"}>
+            <Button variant={"outlined"} color={"primary"} onClick={() => this.props.onBackButtonClicked()}>
+                <ArrowBack/>Back
+            </Button>
+            <h1>{module.title}</h1>
+            <img className={"module-view-image"} src={module.imageUrl}/>
+            {module.tools.map((tool, index) => {
+                if (tool.type === ToolType.Quiz) {
+                    return <QuizViewComponent key={index} quiz={tool as Quiz}/>
+                } else {
+                    return <p>(This tool ({tool.type}) can't be displayed.)</p>;
+                }
+            })}
         </div>
     }
 }
