@@ -3,11 +3,17 @@ import { InputLabel, MenuItem, FormControl, Paper, Select, TextField, Typography
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { QuizPossibleAnswer } from "../../../logic/quiz";
 
-export default function AnswerCardComponent({ props, extraProps }) {
+export default function AnswerCardComponent({ props, extraProps, callback }) {
 
     const [answer, setAnswer] = React.useState<QuizPossibleAnswer>(props);
 
     const styles = useStyles();
+
+    const updateAnswer = React.useCallback((ans) => {callback(ans)}, [callback]);
+
+    React.useEffect(() => {
+        updateAnswer(answer);
+    }, [answer])
 
     const handleTitle = () => (event: React.ChangeEvent<HTMLInputElement>) => {
         setAnswer({ ...answer, title: event.target.value });

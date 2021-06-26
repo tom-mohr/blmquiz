@@ -32,11 +32,12 @@ export default function QuizTool({ props, callback }) {
 
     const getQuestionComponentFromQuestion = (question) => {
         const questionProps = { question: question, scores:  quizProps.scoreNames};
-        return (<QuizQuestionComponent props={questionProps} />);
+        return (<QuizQuestionComponent props={questionProps} callback={updateQuestion}/>);
     }
 
     const addQuestion = () => {
         const emptyQuestion = {
+            id: quizProps.questions.length,
             title: "Enter a question!",
             possibleAnswers: [],
         };
@@ -44,13 +45,20 @@ export default function QuizTool({ props, callback }) {
         setQuizProps({ ...quizProps, questions: newQuestions });
     }
 
+    const updateQuestion = (question) => {
+        const newQuestions = quizProps.questions;
+        newQuestions[question.id] = question;
+        setQuizProps({ ...quizProps, questions: newQuestions });
+    }
+
     const getResultComponentFromResult = (result) => {
         const resultProps = { result: result, scoreNames: quizProps.scoreNames};
-        return (<QuizResultComponent props={resultProps}/>);
+        return (<QuizResultComponent props={resultProps} callback={updateResult}/>);
     }
 
     const addResult = () => {
         const emptyResult = {
+            id: quizProps.results.length,
             title: "Enter a result Title!",
             description: "",
             imageUrl: "",
@@ -61,6 +69,12 @@ export default function QuizTool({ props, callback }) {
             emptyResult.idealScores.push(0);
         });
         const newResults = [...quizProps.results, emptyResult];
+        setQuizProps({ ...quizProps, results: newResults });
+    }
+
+    const updateResult = (result) => {
+        const newResults = quizProps.results;
+        newResults[result.id] = result;
         setQuizProps({ ...quizProps, results: newResults });
     }
 

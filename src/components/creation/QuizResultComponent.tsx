@@ -3,11 +3,17 @@ import { InputLabel, MenuItem, FormControl, Paper, Slider, TextField, Typography
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { QuizResult } from "../../../logic/quiz";
 
-export default function QuizResultComponent({ props }) {
+export default function QuizResultComponent({ props, callback }) {
 
     const [result, setResult] = React.useState<QuizResult>(props.result);
 
     const styles = useStyles();
+
+    const updateResult = React.useCallback((res) => {callback(res)}, [callback]);
+
+    React.useEffect(() => {
+        updateResult(result);
+    }, [result])
 
     const handleTitle = () => (event: React.ChangeEvent<HTMLInputElement>) => {
       setResult({ ...result, title: event.target.value });

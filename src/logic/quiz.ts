@@ -24,6 +24,7 @@ export interface Quiz extends Tool {
 }
 
 export interface QuizResult {
+    id: number,
     title: string;
     description?: string;
     imageUrl?: string;
@@ -39,6 +40,7 @@ export interface QuizResult {
 }
 
 export interface QuizQuestion {
+    id: number,
     title: string;
     /**
      * Must contain at least 2 possible answers.
@@ -47,6 +49,7 @@ export interface QuizQuestion {
 }
 
 export interface QuizPossibleAnswer {
+    id: number,
     title: string;
     imageUrl?: string;
     /**
