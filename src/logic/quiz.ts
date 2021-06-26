@@ -5,7 +5,13 @@ export interface Module {
     tools?: Tool[],
 }
 
-export interface Tool {}
+export enum ToolType {
+    Quiz = "Quiz",
+}
+
+export interface Tool {
+    type: ToolType,
+}
 
 export interface Quiz extends Tool{
     /**
