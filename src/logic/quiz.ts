@@ -5,11 +5,7 @@ export interface Quiz {
     /**
      * Must contain at least 1 string.
      */
-    categoryNames: string[];
-    /**
-     * Length must match length of categoryNames.
-     */
-    initialScores: number[];
+    scoreNames: string[];
     results: QuizResult[];
     questions: QuizQuestion[];
 }
