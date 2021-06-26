@@ -1,4 +1,13 @@
-export interface Quiz {
+export interface Module {
+    id: number,
+    title: string,
+    imageUrl?: string,
+    tools?: Tool[],
+}
+
+export interface Tool {}
+
+export interface Quiz extends Tool{
     /**
      * Must contain at least 1 string.
      */
