@@ -10,6 +10,7 @@ export enum ToolType {
 }
 
 export interface Tool {
+    id: number,
     type: ToolType,
 }
 

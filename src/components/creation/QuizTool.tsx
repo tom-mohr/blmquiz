@@ -7,11 +7,17 @@ import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
 import QuizQuestionComponent from "./QuizQuestionComponent";
 import QuizResultComponent from "./QuizResultComponent";
 
-export default function QuizTool({ props }) {
+export default function QuizTool({ props, callback }) {
 
-    const [quizProps, setQuizProps] = React.useState<Quiz>(props.quiz);
+    const [quizProps, setQuizProps] = React.useState<Quiz>(props);
 
     const styles = useStyles();
+
+    const updateModule = React.useCallback((quiz) => {callback(quiz)}, [callback]);
+
+    React.useEffect(() => {
+        updateModule(quizProps);
+    }, [quizProps])
 
     const handleScoreNameChange = (index) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const updatedScoreNames = quizProps.scoreNames;
@@ -39,8 +45,8 @@ export default function QuizTool({ props }) {
     }
 
     const getResultComponentFromResult = (result) => {
-        const resultProps = { result: result };
-        return (<QuizResultComponent props={resultProps} />);
+        const resultProps = { result: result, scoreNames: quizProps.scoreNames};
+        return (<QuizResultComponent props={resultProps}/>);
     }
 
     const addResult = () => {
@@ -51,6 +57,9 @@ export default function QuizTool({ props }) {
             infoLink: "",
             idealScores: [],
         };
+        quizProps.scoreNames.forEach(element => {
+            emptyResult.idealScores.push(0);
+        });
         const newResults = [...quizProps.results, emptyResult];
         setQuizProps({ ...quizProps, results: newResults });
     }

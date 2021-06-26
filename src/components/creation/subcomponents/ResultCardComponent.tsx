@@ -3,9 +3,9 @@ import { InputLabel, MenuItem, FormControl, Paper, Slider, TextField, Typography
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { QuizResult } from "../../../logic/quiz";
 
-export default function QuizResultComponent({ props }) {
+export default function ResultCardComponent({ props, extraProps }) {
 
-    const [result, setResult] = React.useState<QuizResult>(props.result);
+    const [result, setResult] = React.useState<QuizResult>(props);
 
     const styles = useStyles();
 
@@ -25,7 +25,7 @@ export default function QuizResultComponent({ props }) {
             {result.idealScores.map((idealScore, index) => (
                 <div>
                     <Typography variant="button" gutterBottom>
-                        {props.scoreNames[index]}:
+                        {extraProps[index]}:
                     </Typography>
                     <Slider
                       defaultValue={0}

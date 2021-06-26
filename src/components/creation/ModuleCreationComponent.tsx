@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {Button, Container, Grid, IconButton, Paper, TextField} from "@material-ui/core";
 import { CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, Help, Link, Message, Mic, Room, Publish, Videocam } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -25,8 +25,15 @@ export default function ModuleCreationComponent({ props }) {
 		setModuleProps({ ...moduleProps, [prop]: event.target.value });
 	};
 
+	const updateModuleTool = (tool) => {
+		const updatedTools = moduleProps.tools;
+		updatedTools[tool.id] = tool;
+		setModuleProps({ ...moduleProps, tools: updatedTools });
+	};
+
 	const addQuizTool = () => {
 		const emptyQuiz = {
+			id: moduleProps.tools.length,
 			type: ToolType.Quiz,
 			scoreNames: ["Score 1"],
 			results: [],
@@ -39,8 +46,7 @@ export default function ModuleCreationComponent({ props }) {
 
 	const getComponentFromTool = (tool) => {
 		if (tool.type === ToolType.Quiz) {
-			const quizProps = { quiz: tool };
-			return (<QuizTool props={quizProps} />);
+			return (<QuizTool props={tool} callback={updateModuleTool} />);
 		}
 		else {
 			return null;

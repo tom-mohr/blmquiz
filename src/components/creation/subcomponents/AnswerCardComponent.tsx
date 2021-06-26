@@ -21,7 +21,7 @@ export default function AnswerCardComponent({ props, extraProps }) {
 
     return (
         <Paper className={styles.paper}>
-            <TextField className={styles.title} variant="outlined" value={props.title} onChange={handleTitle()} />
+            <TextField className={styles.title} variant="outlined" value={answer.title} onChange={handleTitle()} />
             {extraProps.map((score, index) => (
                 <div>
                     <Typography variant="button" gutterBottom>
