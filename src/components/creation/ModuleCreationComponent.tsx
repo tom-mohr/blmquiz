@@ -35,14 +35,10 @@ export default function ModuleCreationComponent({ props }) {
 		const newTools = [...moduleProps.tools, emptyQuiz]
 
 		setModuleProps({ ...moduleProps, tools: newTools });
-		console.log(moduleProps);
-		console.log(moduleProps.tools);
 	}
 
 	const getComponentFromTool = (tool) => {
-		console.log(tool);
 		if (tool.type === ToolType.Quiz) {
-			console.log("Das war ein Erfolg");
 			const quizProps = { quiz: tool };
 			return (<QuizTool props={quizProps} />);
 		}
@@ -52,6 +48,7 @@ export default function ModuleCreationComponent({ props }) {
 	}
 
 	const publish = () => {
+		console.log(moduleProps);
 		moduleServer.addModule(moduleProps);
 		props.onBackButtonClicked();
 	}
