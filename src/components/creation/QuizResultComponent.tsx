@@ -1,7 +1,8 @@
 import React from 'react';
 import { InputLabel, MenuItem, FormControl, Paper, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { QuizResult } from "../../../logic/quiz";
+import { QuizResult } from "../../logic/quiz";
+import { getExtremesPerCategory } from "../../logic/quizAnswerMatching";
 
 export default function QuizResultComponent({ props, callback }) {
 
@@ -26,8 +27,11 @@ export default function QuizResultComponent({ props, callback }) {
     };
 
     return (
-        <Paper className={styles.paper}>
+        <Paper className={styles.paper} elevation={6}>
             <TextField className={styles.title} variant="outlined" value={result.title} onChange={handleTitle()} />
+            <Typography variant="h6" gutterBottom>
+                Ideal score to achieve:
+            </Typography>
             {result.idealScores.map((idealScore, index) => (
                 <div>
                     <Typography variant="button" gutterBottom>
@@ -39,8 +43,8 @@ export default function QuizResultComponent({ props, callback }) {
                       value={idealScore}
                       step={1}
                       marks
-                      min={-10}
-                      max={10}
+                      min={props.ranges[index].min}
+                      max={props.ranges[index].max}
                       valueLabelDisplay="auto"
                     />
                 </div>
@@ -60,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 65
         },
         paper: {
-            width: 250,
+            width: 300,
             minHeight: 120,
             justify: "center",
             alignItems: "center",

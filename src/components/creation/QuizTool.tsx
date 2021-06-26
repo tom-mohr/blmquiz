@@ -6,6 +6,7 @@ import "./QuizTool.css";
 import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
 import QuizQuestionComponent from "./QuizQuestionComponent";
 import QuizResultComponent from "./QuizResultComponent";
+import { getExtremesPerCategory } from "../../logic/quizAnswerMatching";
 
 export default function QuizTool({ props, callback }) {
 
@@ -52,7 +53,7 @@ export default function QuizTool({ props, callback }) {
     }
 
     const getResultComponentFromResult = (result) => {
-        const resultProps = { result: result, scoreNames: quizProps.scoreNames};
+        const resultProps = { result: result, scoreNames: quizProps.scoreNames, ranges: getExtremesPerCategory(quizProps.scoreNames.length, quizProps.questions)};
         return (<QuizResultComponent props={resultProps} callback={updateResult}/>);
     }
 

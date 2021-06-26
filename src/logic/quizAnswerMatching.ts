@@ -38,7 +38,7 @@ export function calculateMatching(quizQuestions: QuizQuestion[],
 
 type Range = { min: number, max: number };
 
-function getExtremesPerCategory(scoreCategoryCount: number, quizQuestions: QuizQuestion[]): Range[] {
+export function getExtremesPerCategory(scoreCategoryCount: number, quizQuestions: QuizQuestion[]): Range[] {
 
     let extremesPerCategory = [];
     for (let categoryIndex = 0; categoryIndex < scoreCategoryCount; categoryIndex++) {
@@ -62,6 +62,14 @@ function getExtremesPerCategory(scoreCategoryCount: number, quizQuestions: QuizQ
 }
 
 function getExtremes(possibleAnswers: QuizPossibleAnswer[], categoryIndex: number): Range {
+
+    if(possibleAnswers.length === 0)
+    {
+        return {
+            min: 0,
+            max: 0,
+        };
+    }
 
     // set initial value
     let min = possibleAnswers[0].scoresDelta[categoryIndex];
