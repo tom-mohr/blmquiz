@@ -1,12 +1,12 @@
 import React from 'react';
-import {Container, Grid, IconButton, Paper, TextField} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import { Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
+import { Add } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./QuizTool.css";
-import {Quiz, QuizQuestion, QuizResult} from "../../logic/quiz";
+import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
 import QuizQuestionComponent from "./QuizQuestionComponent";
 
-export default function QuizTool({props}) {
+export default function QuizTool({ props }) {
 
     const [quizProps, setQuizProps] = React.useState<Quiz>(props.quiz);
 
@@ -16,17 +16,17 @@ export default function QuizTool({props}) {
         const updatedScoreNames = quizProps.scoreNames;
         updatedScoreNames[index] = event.target.value;
         setQuizProps({ ...quizProps, scoreNames: updatedScoreNames });
-      };
+    };
 
     const addScore = () => {
         const newScoreNames = [...quizProps.scoreNames, "Score " + (quizProps.scoreNames.length + 1)];
-        setQuizProps({...quizProps, scoreNames: newScoreNames});
+        setQuizProps({ ...quizProps, scoreNames: newScoreNames });
     }
 
     const getQuestionComponentFromQuestion = (question) => {
-		const questionProps = {question: question};
-		return (<QuizQuestionComponent props={questionProps}/>);
-	}
+        const questionProps = { question: question };
+        return (<QuizQuestionComponent props={questionProps} />);
+    }
 
     const addQuestion = () => {
         const emptyQuestion = {
@@ -34,51 +34,56 @@ export default function QuizTool({props}) {
             possibleAnswers: [],
         };
         const newQuestions = [...quizProps.questions, emptyQuestion];
-        setQuizProps({...quizProps, questions: newQuestions});
+        setQuizProps({ ...quizProps, questions: newQuestions });
     }
 
-    return(
-        <div className={"quiz-div"}>
-            <Paper elevation={4}>
-                <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
-                    {quizProps.scoreNames.map((scoreName, index) => (
-				    	<Grid item>
-				    		<TextField id={scoreName} variant="outlined" value={scoreName} onChange={handleScoreNameChange(index)}/>
-				    	</Grid>
-				    ))}
+    return (
+        <Grid container className={styles.container} spacing={6}>
+            <Grid item xs={12}>
+                <Paper elevation={4}>
+                    <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+                        {quizProps.scoreNames.map((scoreName, index) => (
+                            <Grid item>
+                                <TextField id={scoreName} variant="outlined" value={scoreName} onChange={handleScoreNameChange(index)} />
+                            </Grid>
+                        ))}
+                        <Grid item>
+                            <IconButton component="span" onClick={addScore}>
+                                <Add />
+                                Add Score
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </Grid>
+            <Grid item xs={12}>
+                <Paper elevation={4}>
+                    <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+                        {quizProps.questions.map((question, index) => (
+                            <Grid item>
+                                {getQuestionComponentFromQuestion(question)}
+                            </Grid>
+                        ))}
+                    </Grid>
                     <Grid item>
-                        <IconButton component="span" onClick={addScore}>
-        		    		<Add fontSize="large"/>
-        		    	</IconButton>
-				    </Grid>
-			    </Grid>
-            </Paper>
-            <Paper elevation={4}>
-                <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
-                    {quizProps.questions.map((question, index) => (
-				    	<Grid item>
-				    		{getQuestionComponentFromQuestion(question)}
-				    	</Grid>
-				    ))}
-			    </Grid>
-                <Grid item>
-                    <IconButton component="span" onClick={addQuestion}>
-        		    	<Add fontSize="large"/>
-        		    </IconButton>
-				</Grid>
-            </Paper>
-        </div>
-            
+                        <IconButton component="span" onClick={addQuestion}>
+                            <Add fontSize="large" />
+                            Add Question
+                        </IconButton>
+                    </Grid>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 }
 
 const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		container: {
+    createStyles({
+        container: {
             display: "flex",
-			direction: "column",
-			justify: "flex-start",
-			alignItems: "center",
-		},
-	}),
+            direction: "column",
+            justify: "center",
+            alignItems: "center",
+        },
+    }),
 );
