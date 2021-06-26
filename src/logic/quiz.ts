@@ -9,7 +9,7 @@ export interface Quiz {
     /**
      * Length must match length of categoryNames.
      */
-    startValues: number[];
+    initialScores: number[];
     results: QuizResult[];
     questions: QuizQuestion[];
 }
@@ -24,9 +24,9 @@ export interface QuizResult {
     infoLink?: string;
     /**
      * One value per category. (-> Length must match length of Quiz.categoryNames.)
-     * This result is picked if the user's values match these idealValues the best.
+     * This result is picked if the user's scores match these idealValues the best.
      */
-    idealValues: number[];
+    idealScores: number[];
 }
 
 export interface QuizQuestion {
@@ -39,9 +39,10 @@ export interface QuizQuestion {
 
 export interface QuizPossibleAnswer {
     title: string;
+    imageUrl?: string;
     /**
      * One value per category. (-> Length must match length of Quiz.categoryNames.)
-     * If the user picks this possible answer, how should their values change per category?
+     * If the user picks this possible answer, how should their scores change per category?
      */
-    valuesDelta: number[];
+    scoresDelta: number[];
 }
