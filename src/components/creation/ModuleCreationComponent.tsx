@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import {Button, Container, Grid, IconButton, Paper, TextField} from "@material-ui/core";
-import { CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, Help, Link, Message, Mic, Room, Publish, Videocam } from "@material-ui/icons";
+import {Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, IconButton, Paper, TextField, Typography} from "@material-ui/core";
+import { CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, GetApp, Help, Link, Message, Mic, Room, Publish, Videocam } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./ModuleCreationComponent.css";
 import { Module,ToolType } from "../../logic/quiz";
@@ -20,6 +20,7 @@ export default function ModuleCreationComponent({ props }) {
 			imageUrl: '',
 			tools: [],
 		});
+	const [dialogOpen, setDialogOpen] = React.useState(false);
 
 	const handleChange = (prop: keyof Module) => (event: React.ChangeEvent<HTMLInputElement>) => {
 		setModuleProps({ ...moduleProps, [prop]: event.target.value });
@@ -61,10 +62,51 @@ export default function ModuleCreationComponent({ props }) {
 
 	const styles = useStyles();
 
+	const handleClickOpen = () => {
+		setDialogOpen(true);
+	};
+
+	const handleClose = () => {
+			setDialogOpen(false);
+	};
+
 	//render() {
 	return (
 		<div className={"creation-div"}>
 			<TextField id="module-name-input" label="Module Name" variant="outlined" value={moduleProps.title} onChange={handleChange('title')} />
+			{moduleProps.imageUrl === "" ? (
+          <IconButton component="span" onClick={handleClickOpen}>
+              <GetApp/>
+              Image
+          </IconButton>
+      ) :
+      <TextField className={styles.title} label="Image URL" variant="outlined" value={moduleProps.imageUrl} onChange={handleChange("imageUrl")} />
+      }
+			<Dialog open={dialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
+                <DialogContent>
+                    <IconButton component="span" onClick={() => {}}>
+                        <GetApp/>
+                        Upload
+                    </IconButton>
+                    <DialogContentText>
+                        or
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Image URL"
+                        value={moduleProps.imageUrl}
+                        onChange={handleChange("imageUrl")}
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
 			<Grid container className={styles.container} spacing={3}>
 				<Grid item xs={2}>
 					<Paper className={styles.paper}>
@@ -124,13 +166,13 @@ export default function ModuleCreationComponent({ props }) {
 					</Paper>
 					<Grid container>
 						<Grid item xs={12}>
-							<Button variant={"outlined"} color={"primary"} onClick={props.onBackButtonClicked}>
+							<Button fullWidth={true} variant={"outlined"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Close fontSize="large" />
 								Cancel
 							</Button>
 						</Grid>
 						<Grid item xs={12}>
-							<Button variant={"contained"} color={"primary"} onClick={publish}>
+							<Button fullWidth={true} variant={"contained"} color={"primary"} onClick={publish}>
 								<Publish fontSize="large" />
 								Publish
 							</Button>
@@ -138,16 +180,18 @@ export default function ModuleCreationComponent({ props }) {
 					</Grid>
 				</Grid>
 				<Grid item xs={10}>
-					<Paper className={styles.paper}>
-						Use Tools on the right to add content to the module!
-						<Grid container spacing={10}>
-							{moduleProps.tools.map((tool) => (
-								<Grid item xs={12}>
-									{getComponentFromTool(tool)}
-								</Grid>
-							))}
-						</Grid>
-					</Paper>
+					{moduleProps.tools.length === 0 ? (
+						<div className={"center-text"}>
+							Use Tools on the right to add content to the module!
+						</div>
+					) : null}
+					<Grid container spacing={6}>
+						{moduleProps.tools.map((tool) => (
+							<Grid item xs={12}>
+								{getComponentFromTool(tool)}
+							</Grid>
+						))}
+					</Grid>
 				</Grid>
 			</Grid>
 
@@ -172,6 +216,10 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		paper: {
 			textAlign: 'center',
+			backgroundColor: "Gainsboro",
+		},
+		title: {
+			margin: theme.spacing(2),
 		},
 	}),
 );
