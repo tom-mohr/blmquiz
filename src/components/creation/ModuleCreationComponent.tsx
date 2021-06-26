@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
+import {Button, Container, Grid, IconButton, Paper, TextField} from "@material-ui/core";
 import { CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, Help, Link, Message, Mic, Room, Publish, Videocam } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./ModuleCreationComponent.css";
@@ -112,16 +112,16 @@ export default function ModuleCreationComponent({ props }) {
 					</Paper>
 					<Grid container>
 						<Grid item xs={12}>
-							<IconButton component="span" onClick={props.onBackButtonClicked}>
+							<Button variant={"outlined"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Close fontSize="large" />
-								Cancel
-							</IconButton>
+								Abbrechen
+							</Button>
 						</Grid>
 						<Grid item xs={12}>
-							<IconButton component="span" onClick={props.onBackButtonClicked}>
+							<Button variant={"contained"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Publish fontSize="large" />
-								Publish
-							</IconButton>
+								Veröffentlichen
+							</Button>
 						</Grid>
 					</Grid>
 				</Grid>
