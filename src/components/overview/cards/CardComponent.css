@@ -3,8 +3,9 @@
     width: 200px;
     padding: 12px;
     height: fit-content;
-    min-height: 100px;
+    min-height: 80px;
     box-shadow: 0 3px 15px 3px #00000014;
+    background-color: #ffffff;
 
     margin-left: 8px;
     margin-right: 8px;
@@ -12,7 +13,9 @@
 
     cursor: pointer;
 
-    transition: 0.1s linear transform, 0.1s linear box-shadow;
+    transition: 0.1s ease-in-out transform,
+                0.1s ease-in-out box-shadow,
+                0.1s ease-in-out background-color;
 
     display: flex;
     flex-direction: column;
@@ -25,6 +28,10 @@
     box-shadow: 0 5px 15px 3px #00000033;
 }
 
+.card-div:active {
+    background-color: #eeeeee;
+}
+
 .card-title {
     font-weight: bold;
 }
@@ -32,7 +39,7 @@
 .card-img-wrapper {
     border-radius: 15px;
     width: 200px;
-    max-height: 100px;
+    height: 100px;
     overflow: hidden;
 }
 

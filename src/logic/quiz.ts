@@ -2,7 +2,7 @@ export interface Module {
     id: number,
     title: string,
     imageUrl?: string,
-    tools?: Tool[],
+    tools: Tool[],
 }
 
 export enum ToolType {
@@ -13,7 +13,7 @@ export interface Tool {
     type: ToolType,
 }
 
-export interface Quiz extends Tool{
+export interface Quiz extends Tool {
     /**
      * Must contain at least 1 string.
      */

@@ -3,68 +3,52 @@ import {Fab} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import "./OverviewComponent.css";
 import {CardComponent} from "./cards/CardComponent";
+import {ModuleServerProvider} from "../../logic/module_server/ModuleServerProvider";
+import {Module} from "../../logic/quiz";
 
 interface OverviewComponentProps {
     onCreateButtonClicked: () => void;
     onModuleClicked: (id: number) => void;
 }
 
-interface BlmModule {
-    id: number;
-    title: string;
-    imageUrl?: string;
-}
-
-const exampleModules: BlmModule[] = [
-    {
-        id: 0,
-        title: "Welcher Herrscher-Typ bist du?",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Statue-Augustus.jpg",
-    },
-    {
-        id: 1,
-        title: "Welche Epoche passt am besten zu dir?",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Huber_Carl_III.Wilhelm.jpeg/800px-Huber_Carl_III.Wilhelm.jpeg",
-    },
-    {
-        id: 2,
-        title: "Finde deine historische Seelenverwandtschaft",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg",
-    },
-    {
-        id: 3,
-        title: "Teste deine Steinzeit-Instinkte",
-    },
-    {
-        id: 4,
-        title: "Mittelalter: Welchem Stand gehörst du an?",
-    }
-];
-
 export class OverviewComponent extends React.Component<OverviewComponentProps, any> {
 
-    //todo
-    private getNextCard(): BlmModule {
-        // for testing
-        const randomIndex = Math.floor(Math.random() * exampleModules.length);
-        return exampleModules[randomIndex];
-    }
+    private getModulesInColumns(): Module[][] {
 
-    private getBlmModulesInColumns(): BlmModule[][] {
+        const modules = ModuleServerProvider.getServer().getAllModules();
         const columns = [[], [], []];
-        for (let i = 0; i < 8; i++) {
+        const columnHeights = [0, 0, 0]
 
-            // find smallest column
-            const smallestColumn = Math.floor(Math.random() * columns.length); //todo
+        for (let module of modules) {
 
-            columns[smallestColumn].push(this.getNextCard());
+            // add to smallest column
+            const smallestColumn = this.getIndexOfMin(columnHeights);
+
+            columns[smallestColumn].push(module);
+
+            const moduleHeight = module.imageUrl ? 2 : 1;
+            columnHeights[smallestColumn] += moduleHeight;
         }
         return columns;
     }
 
-    render() {
+    private getIndexOfMin(values: number[]): number {
+        if (!values.length) {
+            return -1;
+        }
 
-        const columns = this.getBlmModulesInColumns();
+        let minIndex = 0;
+        let min = values[0];
+        for (let i = 1; i < values.length; i++) {
+            if (values[i] < min) {
+                minIndex = i;
+            }
+        }
+
+        return minIndex;
+    }
+
+    render() {
 
         return <div className={"overview-main-div"}>
             <div className={"overview-top"}>
@@ -72,9 +56,9 @@ export class OverviewComponent extends React.Component<OverviewComponentProps, a
             </div>
 
             <div className={"overview-card-container"}>
-                {this.getBlmModulesInColumns().map(blmModules => <div className={"overview-card-container-column"}>
-                    {blmModules.map(m =>
-                        <CardComponent title={m.title} imageUrl={m.imageUrl} onClick={() => {this.props.onModuleClicked(m.id)}}/>
+                {this.getModulesInColumns().map((modules, col) => <div key={col} className={"overview-card-container-column"}>
+                    {modules.map(m =>
+                        <CardComponent key={m.id} title={m.title} imageUrl={m.imageUrl} onClick={() => {this.props.onModuleClicked(m.id)}}/>
                     )}
                 </div>)}
             </div>
