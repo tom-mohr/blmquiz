@@ -3,11 +3,15 @@ import {Button, Container, Grid, IconButton, Paper, TextField} from "@material-u
 import { CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, Help, Link, Message, Mic, Room, Publish, Videocam } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./ModuleCreationComponent.css";
-import { Module, Quiz, QuizQuestion, QuizResult, ToolType } from "../../logic/quiz";
+import { Module,ToolType } from "../../logic/quiz";
+import { ModuleServerProvider } from "../../logic/module_server/ModuleServerProvider";
 import QuizTool from "./QuizTool";
+
 
 export default function ModuleCreationComponent({ props }) {
 	//export class ModuleCreationComponent extends React.Component<MyProps, any> {
+
+	const moduleServer = ModuleServerProvider.getServer();
 
 	const [moduleProps, setModuleProps] = React.useState<Module>(
 		{
@@ -45,6 +49,11 @@ export default function ModuleCreationComponent({ props }) {
 		else {
 			return null;
 		}
+	}
+
+	const publish = () => {
+		moduleServer.addModule(moduleProps);
+		props.onBackButtonClicked();
 	}
 
 	const styles = useStyles();
@@ -118,7 +127,7 @@ export default function ModuleCreationComponent({ props }) {
 							</Button>
 						</Grid>
 						<Grid item xs={12}>
-							<Button variant={"contained"} color={"primary"} onClick={props.onBackButtonClicked}>
+							<Button variant={"contained"} color={"primary"} onClick={publish}>
 								<Publish fontSize="large" />
 								Publish
 							</Button>
