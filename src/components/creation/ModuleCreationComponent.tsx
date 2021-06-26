@@ -3,16 +3,56 @@ import {Container, Grid, IconButton, Paper, TextField} from "@material-ui/core";
 import {CameraAlt, Close, FeaturedVideo, FilterFrames, Forum, Help, Link, Message, Mic, Room, Publish, Videocam} from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./ModuleCreationComponent.css";
+import {Module, Quiz, QuizQuestion, QuizResult, ToolType} from "../../logic/quiz";
+import QuizTool from "./QuizTool";
 
 export default function ModuleCreationComponent({props}) {
 //export class ModuleCreationComponent extends React.Component<MyProps, any> {
+
+	const [moduleProps, setModuleProps] = React.useState<Module>(
+	{
+		id: 0,
+  	title: '',
+  	imageUrl: '',
+		tools: [],
+	});
+
+	const handleChange = (prop: keyof Module) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setModuleProps({ ...moduleProps, [prop]: event.target.value });
+  };
+
+	const addQuizTool = () => {
+		const emptyQuiz = {
+			type: ToolType.Quiz,
+			scoreNames: ["Score 1"],
+			results: [],
+    	questions: [],
+		}
+		const newTools = [...moduleProps.tools, emptyQuiz]
+
+		setModuleProps({...moduleProps, tools: newTools});
+		console.log(moduleProps);
+		console.log(moduleProps.tools);
+	}
+
+	const getComponentFromTool = (tool) => {
+		console.log(tool);
+		if(tool.type === ToolType.Quiz) {
+			console.log("Das war ein Erfolg");
+			const quizProps = {quiz: tool};
+			return (<QuizTool props={quizProps}/>);
+		}
+		else {
+			return null;
+		}
+	}
 
 	const styles = useStyles();
 
 	//render() {
 		return (
 			<div className={"creation-div"}>
-				<TextField id="module-name-input" label="Module Name" variant="outlined"/>
+				<TextField id="module-name-input" label="Module Name" variant="outlined" value={moduleProps.title} onChange={handleChange('title')}/>
 				<Grid container className={styles.container} spacing={3}>
 					<Grid item xs={2}>
 						<Paper className={styles.paper}>
@@ -64,7 +104,7 @@ export default function ModuleCreationComponent({props}) {
         							</IconButton>
 								</Grid>
 								<Grid item xs={6}>
-									<IconButton component="span" onClick={props.onBackButtonClicked}>
+									<IconButton component="span" onClick={addQuizTool}>
         							  <FeaturedVideo fontSize="large"/>
         							</IconButton>
 								</Grid>
@@ -73,7 +113,14 @@ export default function ModuleCreationComponent({props}) {
 					</Grid>
 					<Grid item xs={10}>
 						<Paper className={styles.paper}>
-							Module
+							Use Tools on the right to add content to the module!
+							<Grid container>
+								{moduleProps.tools.map((tool) => (
+									<Grid item xs={12}>
+										{getComponentFromTool(tool)}
+									</Grid>
+								))}
+							</Grid>
 						</Paper>
 					</Grid>
 				</Grid>
