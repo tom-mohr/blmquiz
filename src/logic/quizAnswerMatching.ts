@@ -32,6 +32,20 @@ export function calculateMatching(quizQuestions: QuizQuestion[],
         .map(euclideanNorm)
         .map(d => d / Math.sqrt(dimension));  // map to (0, 1)
 
+    //todo this is just for debugging
+    // console.log("scores:");
+    // console.log(scores);
+    // console.log("ideal scores:");
+    // console.log(quizResults.map(r => r.idealScores));
+    // console.log("differences:");
+    // console.log(differences);
+    // console.log("normalized differences:");
+    // console.log(normalizedDifferences);
+    // console.log("extremes per category:");
+    // console.log(getExtremesPerCategory(dimension, quizQuestions));
+    // console.log("normalized distances:");
+    // console.log(normalizedDistances);
+
     return normalizedDistances
         .map(val => 1 - val);  // distance 0 gets 1 in matching
 }
@@ -101,7 +115,7 @@ function arrayDiff(a: number[], b: number[]): number[] {
 }
 
 function euclideanNorm(values: number[]): number {
-    return values.reduce((sum, val) => sum + val * val, 0);
+    return Math.sqrt(values.reduce((sum, val) => sum + val * val, 0));
 }
 
 function arraySum(values: number[]): number {

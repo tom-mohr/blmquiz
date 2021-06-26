@@ -12,15 +12,15 @@ export const exampleModules: Module[] = [
                 results: [
                     {
                         title: "Mittelalter",
-                        idealScores: [5, -5, -5],
+                        idealScores: [2, 1, -1],
                     },
                     {
                         title: "Barock",
-                        idealScores: [-5, 5, -5],
+                        idealScores: [1, 3, -1],
                     },
                     {
                         title: "Neuzeit",
-                        idealScores: [-5, -5, 5],
+                        idealScores: [-3, -1, 2],
                     },
                 ],
                 questions: [
