@@ -1,7 +1,4 @@
 export interface Quiz {
-    title: string;
-    imageUrl?: string;
-    description?: string;
     /**
      * Must contain at least 1 string.
      */
