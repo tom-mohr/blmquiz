@@ -5,6 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./QuizTool.css";
 import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
 import QuizQuestionComponent from "./QuizQuestionComponent";
+import QuizResultComponent from "./QuizResultComponent";
 
 export default function QuizTool({ props }) {
 
@@ -35,6 +36,23 @@ export default function QuizTool({ props }) {
         };
         const newQuestions = [...quizProps.questions, emptyQuestion];
         setQuizProps({ ...quizProps, questions: newQuestions });
+    }
+
+    const getResultComponentFromResult = (result) => {
+        const resultProps = { result: result };
+        return (<QuizResultComponent props={resultProps} />);
+    }
+
+    const addResult = () => {
+        const emptyResult = {
+            title: "Enter a result Title!",
+            description: "",
+            imageUrl: "",
+            infoLink: "",
+            idealScores: [],
+        };
+        const newResults = [...quizProps.results, emptyResult];
+        setQuizProps({ ...quizProps, results: newResults });
     }
 
     return (
@@ -69,6 +87,23 @@ export default function QuizTool({ props }) {
                         <IconButton component="span" onClick={addQuestion}>
                             <Add fontSize="large" />
                             Add Question
+                        </IconButton>
+                    </Grid>
+                </Paper>
+            </Grid>
+            <Grid item xs={12}>
+                <Paper elevation={4}>
+                    <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+                        {quizProps.results.map((result, index) => (
+                            <Grid item>
+                                {getResultComponentFromResult(result)}
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid item>
+                        <IconButton component="span" onClick={addResult}>
+                            <Add fontSize="large" />
+                            Add Result
                         </IconButton>
                     </Grid>
                 </Paper>
