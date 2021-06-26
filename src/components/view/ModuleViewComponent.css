@@ -3,6 +3,24 @@
     width: 100%;
     height: fit-content;
     margin: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.module-view-main-div-top {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.module-view-main-div-inner {
+    flex-grow: 1;
+    max-width: 1000px;
 }
 
 .module-view-image {

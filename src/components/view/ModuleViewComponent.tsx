@@ -17,18 +17,22 @@ export class ModuleViewComponent extends React.Component<ModuleViewComponentProp
         const module = ModuleServerProvider.getServer().getModule(this.props.viewModuleId);
 
         return <div className={"module-view-main-div"}>
-            <Button variant={"outlined"} color={"primary"} onClick={() => this.props.onBackButtonClicked()}>
-                <ArrowBack/>Back
-            </Button>
-            <h1>{module.title}</h1>
-            <img className={"module-view-image"} src={module.imageUrl}/>
-            {module.tools.map((tool, index) => {
-                if (tool.type === ToolType.Quiz) {
-                    return <QuizViewComponent key={index} quiz={tool as Quiz}/>
-                } else {
-                    return <p>(This tool ({tool.type}) can't be displayed.)</p>;
-                }
-            })}
+            <div className={"module-view-main-div-top"}>
+                <Button variant={"outlined"} color={"primary"} onClick={() => this.props.onBackButtonClicked()}>
+                    <ArrowBack/>Back
+                </Button>
+            </div>
+            <div className={"module-view-main-div-inner"}>
+                <h1>{module.title}</h1>
+                <img className={"module-view-image"} src={module.imageUrl}/>
+                {module.tools.map((tool, index) => {
+                    if (tool.type === ToolType.Quiz) {
+                        return <QuizViewComponent key={index} quiz={tool as Quiz}/>
+                    } else {
+                        return <p>(This tool ({tool.type}) can't be displayed.)</p>;
+                    }
+                })}
+            </div>
         </div>
     }
 }
