@@ -25,7 +25,7 @@ export default function QuizTool({ props }) {
     }
 
     const getQuestionComponentFromQuestion = (question) => {
-        const questionProps = { question: question };
+        const questionProps = { question: question, scores:  quizProps.scoreNames};
         return (<QuizQuestionComponent props={questionProps} />);
     }
 

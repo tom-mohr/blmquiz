@@ -114,13 +114,13 @@ export default function ModuleCreationComponent({ props }) {
 						<Grid item xs={12}>
 							<Button variant={"outlined"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Close fontSize="large" />
-								Abbrechen
+								Cancel
 							</Button>
 						</Grid>
 						<Grid item xs={12}>
 							<Button variant={"contained"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Publish fontSize="large" />
-								Veröffentlichen
+								Publish
 							</Button>
 						</Grid>
 					</Grid>

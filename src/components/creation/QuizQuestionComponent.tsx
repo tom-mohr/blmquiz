@@ -2,12 +2,14 @@ import React from 'react';
 import { Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import "./QuizTool.css";
+import "./QuizQuestionComponent.css";
 import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
+import AnswerCardComponent from './subcomponents/AnswerCardComponent';
 
 export default function QuizQuestionComponent({ props }) {
 
     const [questionProps, setQuestionProps] = React.useState<QuizQuestion>(props.question);
+    const scoreNames = props.scores;
 
     const styles = useStyles();
 
@@ -26,12 +28,12 @@ export default function QuizQuestionComponent({ props }) {
     }
 
     return (
-        <div className={"quiz-div"}>
+        <div className={"question-div"}>
             <TextField variant="outlined" value={questionProps.title} onChange={handleChange("title")} />
-            <Grid container justify="space-evenly" alignItems="flex-start" spacing={3}>
+            <Grid container direction="row" justify="space-around" alignItems="baseline" spacing={3}>
                 {questionProps.possibleAnswers.map((answer, index) => (
                     <Grid item xs={6}>
-                        <TextField variant="outlined" value={answer.title}/>
+                        <AnswerCardComponent props={answer} extraProps={scoreNames}/>
                     </Grid>
                 ))}
                 <Grid item xs={6}>
@@ -50,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
         container: {
             display: "flex",
             direction: "column",
-            justify: "flex-start",
+            justify: "center",
             alignItems: "center",
         },
     }),
