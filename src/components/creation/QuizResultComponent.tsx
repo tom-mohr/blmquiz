@@ -47,7 +47,7 @@ export default function QuizResultComponent({ props, callback }) {
     return (
         <Box width="100%">
             <Paper className={styles.paper} elevation={6}>
-                <TextField className={styles.title} variant="outlined" value={result.title} onChange={handleTitle()} />
+                <TextField className={styles.title} label="Result Title" variant="outlined" value={result.title} onChange={handleTitle()} />
                     {result.imageUrl === "" ? (
                         <Button className={styles.button} variant={"outlined"} color={"primary"} onClick={handleClickOpen}>
                             <Add/>

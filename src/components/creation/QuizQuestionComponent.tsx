@@ -25,7 +25,7 @@ export default function QuizQuestionComponent({ props, callback }) {
     const addAnswer = () => {
         const emptyAnswer = {
             id: questionProps.possibleAnswers.length,
-            title: "testTitle",
+            title: "",
             imageUrl: "",
             scoresDelta: [],
         };
@@ -45,7 +45,7 @@ export default function QuizQuestionComponent({ props, callback }) {
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
-                <TextField variant="outlined" value={questionProps.title} onChange={handleChange("title")} />
+                <TextField variant="outlined" label="question" value={questionProps.title} onChange={handleChange("title")} />
             </Grid>
             {questionProps.possibleAnswers.map((answer, index) => (
                 <Box margin="auto" width="35%" paddingTop="8px">

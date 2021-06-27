@@ -39,7 +39,7 @@ export default function QuizTool({ props, callback }) {
     const addQuestion = () => {
         const emptyQuestion = {
             id: quizProps.questions.length,
-            title: "Enter a question!",
+            title: "",
             possibleAnswers: [],
         };
         const newQuestions = [...quizProps.questions, emptyQuestion];
@@ -60,7 +60,7 @@ export default function QuizTool({ props, callback }) {
     const addResult = () => {
         const emptyResult = {
             id: quizProps.results.length,
-            title: "Enter a result Title!",
+            title: "",
             description: "",
             imageUrl: "",
             infoLink: "",
