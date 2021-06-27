@@ -1,8 +1,10 @@
 import * as React from "react";
-import {Quiz} from "../../logic/quiz";
+import {Quiz, QuizResult} from "../../logic/quiz";
 import "./QuizViewComponent.css";
 import {QuestionViewComponent} from "./QuestionViewComponent";
 import {calculateMatching} from "../../logic/quizAnswerMatching";
+import {CardComponent} from "../overview/cards/CardComponent";
+import {CSSProperties} from "react";
 
 interface QuizViewComponentProps {
     quiz: Quiz;
@@ -10,7 +12,7 @@ interface QuizViewComponentProps {
 
 interface QuizViewComponentState {
     showResult: boolean;
-    matching: number[] | undefined;
+    resultsOrderedByMatching: {matchValue: number, result: QuizResult}[] | undefined;
 }
 
 export class QuizViewComponent extends React.Component<QuizViewComponentProps, QuizViewComponentState> {
@@ -22,7 +24,7 @@ export class QuizViewComponent extends React.Component<QuizViewComponentProps, Q
 
         this.state = {
             showResult: false,
-            matching: undefined,
+            resultsOrderedByMatching: undefined,
         };
 
         for (let i = 0; i < this.props.quiz.questions.length; i++) {
@@ -49,7 +51,7 @@ export class QuizViewComponent extends React.Component<QuizViewComponentProps, Q
 
     private onAnswerChanged(): void {
         if (this.hasAnsweredAll()) {
-            this.setState({showResult: true, matching: this.calculateMatching()});
+            this.setState({showResult: true, resultsOrderedByMatching: this.getResultsOrderedByMatching()});
         } else {
             this.setState({showResult: false});
         }
@@ -84,21 +86,71 @@ export class QuizViewComponent extends React.Component<QuizViewComponentProps, Q
         return calculateMatching(this.props.quiz.questions, this.props.quiz.results, scores);
     }
 
+    private getResultsOrderedByMatching(): {matchValue: number, result: QuizResult}[] {
+
+        const matching = this.calculateMatching();;
+        const results = this.props.quiz.results.slice();
+        const n = matching.length;
+
+        for (let i = 0; i < n - 1; i++) {
+            // find largest of remaining
+            let max = matching[i];
+            let maxIndex = i;
+            for (let j = i + 1; j < n; j++) {
+                if (matching[j] > max) {
+                    max = matching[j];
+                    maxIndex = j;
+                }
+            }
+
+            // swap with first index in range
+            this.swap(matching, i, maxIndex);
+            this.swap(results, i, maxIndex);
+        }
+
+        return matching.map((matchValue, index) => ({matchValue: matchValue, result: results[index]}));
+    }
+
+    private swap(arr: any[], i: number, j: number): void {
+        let h = arr[j];
+        arr[j] = arr[i];
+        arr[i] = h;
+    }
+
+    private renderResult(matchValue: number, result: QuizResult, key: number, highlight: boolean): JSX.Element {
+        const percentageString = `${Math.round(matchValue * 100)}%`;
+        const style: CSSProperties = {};
+        if (highlight) {
+            style.background = "lightgreen";
+        }
+        return <CardComponent title={`${percentageString} ${result.title}`} style={style} responsive={false}>
+            <p>{result.description}</p>
+            {result.infoLink && <a href={result.infoLink}>Link</a>}
+        </CardComponent>;
+    }
+
     render() {
         return <div>
             {this.props.quiz.questions.map((q, index) =>
                 <QuestionViewComponent key={index} ref={this.questionRefs[index]} question={q} onChange={() => this.onAnswerChanged()}/>
             )}
             {this.state.showResult && <div>
-                <h2>Ergebnis:</h2>
-                {this.state.matching.map((matchValue, index) => {
-                    const result = this.props.quiz.results[index];
-                    return <div>
-                        {Math.round(matchValue * 100)}% <strong>{result.title}</strong>
-                        <p>{result.description}</p>
-                        {result.infoLink && <a href={result.infoLink}>Link</a>}
-                    </div>;
-                })}
+
+                <h2>Result:</h2>
+                <div className={"quiz-view-results-container"}>
+                    {this.renderResult(
+                        this.state.resultsOrderedByMatching[0].matchValue,
+                        this.state.resultsOrderedByMatching[0].result,
+                        0, true
+                    )}
+                </div>
+
+                <h2>Your other results:</h2>
+                <div className={"quiz-view-results-container"}>
+                    {this.state.resultsOrderedByMatching.slice(1, this.state.resultsOrderedByMatching.length)
+                        .map((match, index) => this.renderResult(match.matchValue, match.result, index, false)
+                    )}
+                </div>
             </div>}
         </div>;
     }

@@ -4,14 +4,11 @@
     padding: 12px;
     height: fit-content;
     min-height: 80px;
-    box-shadow: 0 3px 15px 3px #00000014;
     background-color: #ffffff;
 
     margin-left: 8px;
     margin-right: 8px;
     margin-bottom: 8px;
-
-    cursor: pointer;
 
     transition: 0.1s ease-in-out transform,
                 0.1s ease-in-out box-shadow,
@@ -23,12 +20,21 @@
     align-items: center;
 }
 
-.card-div:hover {
+.card-div-not-responsive {
+    box-shadow: 0 1px 2px 1px #00000014;
+}
+
+.card-div-responsive {
+    box-shadow: 0 3px 15px 3px #00000014;
+    cursor: pointer;
+}
+
+.card-div-responsive:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px 3px #00000033;
 }
 
-.card-div:active {
+.card-div-responsive:active {
     background-color: #eeeeee;
 }
 
