@@ -6,6 +6,7 @@ import "./ModuleCreationComponent.css";
 import { Module,ToolType } from "../../logic/quiz";
 import { ModuleServerProvider } from "../../logic/module_server/ModuleServerProvider";
 import QuizTool from "./QuizTool";
+import AddIcon from "@material-ui/icons/Add";
 
 
 export default function ModuleCreationComponent({ props }) {
@@ -73,17 +74,19 @@ export default function ModuleCreationComponent({ props }) {
 	//render() {
 	return (
 		<div className={"creation-div"}>
-			<TextField id="module-name-input" label="Module Name" variant="outlined" value={moduleProps.title} onChange={handleChange('title')} />
-			<Box paddingBottom="15px">
-				{moduleProps.imageUrl === "" ? (
-						<IconButton component="span" onClick={handleClickOpen}>
-								<GetApp/>
+			<div className={"creation-div-top"}>
+				<TextField id="module-name-input" label="Module Title" variant="outlined" value={moduleProps.title} onChange={handleChange('title')} />
+				<Box paddingLeft="12px">
+					{moduleProps.imageUrl === "" ? (
+							<Button variant={"outlined"} color={"primary"} onClick={handleClickOpen}>
+								<AddIcon/>
 								Image
-						</IconButton>
-				) :
-				<TextField className={styles.title} label="Image URL" variant="outlined" value={moduleProps.imageUrl} onChange={handleChange("imageUrl")} />
-				}
-			</Box>
+							</Button>
+						) :
+						<TextField label="Image URL" variant="outlined" value={moduleProps.imageUrl} onChange={handleChange("imageUrl")} />
+					}
+				</Box>
+			</div>
 			<Dialog open={dialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
                 <DialogContent>
@@ -160,7 +163,7 @@ export default function ModuleCreationComponent({ props }) {
 								</IconButton>
 							</Grid>
 							<Grid item xs={6}>
-								<IconButton component="span" onClick={addQuizTool}>
+								<IconButton component="span" color={"primary"} onClick={addQuizTool}>
 									<FeaturedVideo fontSize="large" />
 								</IconButton>
 							</Grid>
@@ -219,9 +222,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		paper: {
 			textAlign: 'center',
 			backgroundColor: "white",
-		},
-		title: {
-			margin: theme.spacing(2),
 		},
 		button: {
 			paddingTop: "5px",
