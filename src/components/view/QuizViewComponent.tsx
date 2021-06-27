@@ -123,7 +123,7 @@ export class QuizViewComponent extends React.Component<QuizViewComponentProps, Q
         if (highlight) {
             style.background = "lightgreen";
         }
-        return <CardComponent title={`${percentageString} ${result.title}`} style={style} responsive={false}>
+        return <CardComponent title={`${percentageString} ${result.title}`} imageUrl={result.imageUrl} style={style} responsive={false}>
             <p>{result.description}</p>
             {result.infoLink && <a href={result.infoLink}>Link</a>}
         </CardComponent>;

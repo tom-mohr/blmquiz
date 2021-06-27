@@ -52,7 +52,7 @@ export class OverviewComponent extends React.Component<OverviewComponentProps, a
 
         return <div className={"overview-main-div"}>
             <div className={"overview-top"}>
-                <h1>Badisches Landesmuseum</h1>
+                <h1 style={{color: "#a88a49"}}>Badisches Landesmuseum</h1>
             </div>
 
             <div className={"overview-card-container"}>
