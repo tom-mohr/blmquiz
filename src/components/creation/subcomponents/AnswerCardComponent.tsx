@@ -80,7 +80,7 @@ export default function AnswerCardComponent({ props, extraProps, callback }) {
             {extraProps.map((score, index) => (
                 <div>
                     <Typography variant="button" gutterBottom>
-                        {score}:
+                        change {score}:
                     </Typography>
                     <TextField className={styles.formControl} defaultValue={0} size="small" type="number" variant="outlined" value={props.scoresDelta[index]} onChange={handleScoreDelta(index)} />
                 </div>
