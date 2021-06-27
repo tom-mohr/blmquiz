@@ -20,10 +20,12 @@ export const exampleModules: Module[] = [
                     {
                         title: "Baroque",
                         idealScores: [1, 3, -1],
+                        description: "Absolutism is no problem for you. Therefore, you can enjoy the upsides of this time!",
                     },
                     {
                         title: "Modern Era",
                         idealScores: [-3, -1, 2],
+                        description: "You were born at the right time. Good for you!"
                     },
                 ],
                 questions: [
