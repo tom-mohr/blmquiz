@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, Slider, TextField, Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { GetApp } from "@material-ui/icons";
+import { Add, GetApp } from "@material-ui/icons";
 import { QuizResult } from "../../logic/quiz";
 import { getExtremesPerCategory } from "../../logic/quizAnswerMatching";
 
@@ -48,14 +48,14 @@ export default function QuizResultComponent({ props, callback }) {
         <Box width="100%">
             <Paper className={styles.paper} elevation={6}>
                 <TextField className={styles.title} variant="outlined" value={result.title} onChange={handleTitle()} />
-                {result.imageUrl === "" ? (
-                    <IconButton component="span" onClick={handleClickOpen}>
-                        <GetApp/>
-                        Image
-                    </IconButton>
-                ) :
-                <TextField className={styles.title} label="Image URL" value={result.imageUrl} onChange={handleImageURL} />
-                }
+                    {result.imageUrl === "" ? (
+                        <Button className={styles.button} variant={"outlined"} color={"primary"} onClick={handleClickOpen}>
+                            <Add/>
+                            Image
+                        </Button>
+                    ) :
+                    <TextField className={styles.title} label="Image URL" value={result.imageUrl} onChange={handleImageURL} />
+                    }
                 <Dialog open={dialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
                     <DialogContent>
@@ -140,6 +140,10 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: "auto",
             justify: "center",
             alignItems: "center",
+        },
+        button: {
+            marginTop: "10px",
+            marginBottom: "10px"
         },
     }),
 );

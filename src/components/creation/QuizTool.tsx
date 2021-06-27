@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
+import { Button, Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./QuizTool.css";
@@ -90,10 +90,10 @@ export default function QuizTool({ props, callback }) {
                             </Grid>
                         ))}
                         <Grid item>
-                            <IconButton component="span" onClick={addScore}>
+                            <Button className={styles.button} color={"primary"}  variant={"contained"} onClick={addScore}>
                                 <Add />
                                 Add Score
-                            </IconButton>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Paper>
@@ -108,10 +108,10 @@ export default function QuizTool({ props, callback }) {
                         ))}
                     </Grid>
                     <Grid item>
-                        <IconButton component="span" onClick={addQuestion}>
-                            <Add fontSize="large" />
+                        <Button className={styles.button} color={"primary"}  variant={"contained"} onClick={addQuestion}>
+                            <Add />
                             Add Question
-                        </IconButton>
+                        </Button>
                     </Grid>
                 </Paper>
             </Grid>
@@ -125,10 +125,10 @@ export default function QuizTool({ props, callback }) {
                         ))}
                     </Grid>
                     <Grid item>
-                        <IconButton component="span" onClick={addResult}>
-                            <Add fontSize="large" />
+                        <Button className={styles.button} color={"primary"}  variant={"contained"} onClick={addResult}>
+                            <Add />
                             Add Result
-                        </IconButton>
+                        </Button>
                     </Grid>
                 </Paper>
             </Grid>
@@ -145,8 +145,13 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
         },
         paper: {
+            padding: 30,
             textAlign: 'center',
             elevation: 4,
+        },
+        button: {
+            marginTop: "10px",
+            marginBottom: "10px"
         },
     }),
 );

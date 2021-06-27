@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, TextField, Typography } from "@material-ui/core";
-import { GetApp } from "@material-ui/icons";
+import { Add, GetApp } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { QuizPossibleAnswer } from "../../../logic/quiz";
 
@@ -45,10 +45,10 @@ export default function AnswerCardComponent({ props, extraProps, callback }) {
                 <TextField className={styles.title} label="Answer" variant="outlined" value={answer.title} onChange={handleTitle} />
             </Box>
             {answer.imageUrl === "" ? (
-                <IconButton component="span" onClick={handleClickOpen}>
-                    <GetApp/>
+                <Button variant={"outlined"} color={"primary"} onClick={handleClickOpen}>
+                    <Add/>
                     Image
-                </IconButton>
+                </Button>
             ) :
             <TextField className={styles.title} label="Image URL" value={answer.imageUrl} onChange={handleImageURL} />
             }

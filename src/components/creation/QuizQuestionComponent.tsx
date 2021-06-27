@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
+import { Box, Button, Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./QuizQuestionComponent.css";
@@ -55,10 +55,10 @@ export default function QuizQuestionComponent({ props, callback }) {
                 </Box>
             ))}
             <Grid item xs={6}>
-                <IconButton component="span" onClick={addAnswer}>
+                <Button variant={"outlined"} color={"primary"} onClick={addAnswer}>
                     <Add/>
                     Add Answer
-                </IconButton>
+                </Button>
             </Grid>
         </Grid>
     );
