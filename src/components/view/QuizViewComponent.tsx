@@ -125,7 +125,7 @@ export class QuizViewComponent extends React.Component<QuizViewComponentProps, Q
         }
         return <CardComponent title={`${percentageString} ${result.title}`} imageUrl={result.imageUrl} style={style} responsive={false}>
             <p>{result.description}</p>
-            {result.infoLink && <a href={result.infoLink}>Link</a>}
+            {result.infoLink && <a href={result.infoLink} target="_blank">learn more</a>}
         </CardComponent>;
     }
 

@@ -1,4 +1,4 @@
-import {Module, Quiz, Tool, ToolType} from "./quiz";
+import {Module, Tool, ToolType} from "./quiz";
 
 export const exampleModules: Module[] = [
     {
@@ -21,6 +21,7 @@ export const exampleModules: Module[] = [
                         title: "Baroque",
                         idealScores: [1, 3, -1],
                         description: "Absolutism is no problem for you. Therefore, you can enjoy the upsides of this time!",
+                        infoLink: "https://www.landesmuseum.de/",
                         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Schloss-Versailles.jpg",
                     },
                     {
