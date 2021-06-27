@@ -54,7 +54,7 @@ export default function QuizResultComponent({ props, callback }) {
                             Image
                         </Button>
                     ) :
-                    <TextField className={styles.title} label="Image URL" value={result.imageUrl} onChange={handleImageURL} />
+                    <TextField className={styles.title} label="Image URL" variant="outlined" value={result.imageUrl} onChange={handleImageURL} />
                     }
                 <Dialog open={dialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
@@ -124,6 +124,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: "80%",
             margin: "auto",
             paddingTop: "8px",
+            paddingBottom: "10px",
         },
         title2: {
             width: "80%",
@@ -142,7 +143,6 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
         },
         button: {
-            marginTop: "10px",
             marginBottom: "10px"
         },
     }),
