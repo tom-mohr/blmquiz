@@ -28,7 +28,7 @@ export const exampleModules: Module[] = [
                         title: "Modern Era",
                         idealScores: [-3, -1, 2],
                         description: "You were born at the right time. Good for you!",
-                        imageUrl: "https://www.offset.com/de/search/skyscraper",
+                        imageUrl: "https://www.seoagentur.de/wp-content/uploads/sites/4/shutterstock_1499939441-e1583941584550.jpg",
                     },
                 ],
                 questions: [
