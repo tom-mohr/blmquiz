@@ -26,7 +26,7 @@ export const exampleModules: Module[] = [
                     {
                         title: "Modern Era",
                         idealScores: [-3, -1, 2],
-                        description: "You were born at the right time. Good for you!"
+                        description: "You were born at the right time. Good for you!",
                         imageUrl: "https://www.offset.com/de/search/skyscraper",
                     },
                 ],
