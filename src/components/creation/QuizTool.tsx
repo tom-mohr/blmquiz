@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, useTheme  } from '@material-ui/core/styles';
 import "./QuizTool.css";
 import { Quiz, QuizQuestion, QuizResult } from "../../logic/quiz";
 import QuizQuestionComponent from "./QuizQuestionComponent";
@@ -13,6 +13,8 @@ export default function QuizTool({ props, callback }) {
     const [quizProps, setQuizProps] = React.useState<Quiz>(props);
 
     const styles = useStyles();
+
+    const theme = useTheme();
 
     const updateModule = React.useCallback((quiz) => {callback(quiz)}, [callback]);
 
@@ -90,7 +92,7 @@ export default function QuizTool({ props, callback }) {
                             </Grid>
                         ))}
                         <Grid item>
-                            <Button className={styles.button} color={"primary"}  variant={"contained"} onClick={addScore}>
+                            <Button className={styles.button} color={"primary"} variant={"contained"} onClick={addScore}>
                                 <Add />
                                 Add Score
                             </Button>
