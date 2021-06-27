@@ -21,11 +21,13 @@ export const exampleModules: Module[] = [
                         title: "Baroque",
                         idealScores: [1, 3, -1],
                         description: "Absolutism is no problem for you. Therefore, you can enjoy the upsides of this time!",
+                        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Schloss-Versailles.jpg",
                     },
                     {
                         title: "Modern Era",
                         idealScores: [-3, -1, 2],
                         description: "You were born at the right time. Good for you!"
+                        imageUrl: "https://www.offset.com/de/search/skyscraper",
                     },
                 ],
                 questions: [
@@ -65,19 +67,22 @@ export const exampleModules: Module[] = [
                         ],
                     },
                     {
-                        title: "Are you religious?",
+                        title: "Are you christian?",
                         possibleAnswers: [
                             {
                                 title: "I go to church every sunday.",
                                 scoresDelta: [2, 1, 0],
+                                imageUrl: "https://findicons.com/files/icons/885/religion_vista/256/church.png",
                             },
                             {
                                 title: "I'm not sure, but Christmas is nice!",
                                 scoresDelta: [-1, 1, 1],
+                                imageUrl: "https://findicons.com/files/icons/235/merry_christmas/256/christmas_tree.png",
                             },
                             {
                                 title: "Pie in the sky? Doesn't make sense to me.",
                                 scoresDelta: [-3, 0, 1],
+                                imageUrl: "https://cdn.iconscout.com/icon/premium/png-256-thumb/atheist-1650795-1401854.png",
                             },
                         ],
                     }
