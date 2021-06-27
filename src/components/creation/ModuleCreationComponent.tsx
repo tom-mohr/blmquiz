@@ -74,14 +74,16 @@ export default function ModuleCreationComponent({ props }) {
 	return (
 		<div className={"creation-div"}>
 			<TextField id="module-name-input" label="Module Name" variant="outlined" value={moduleProps.title} onChange={handleChange('title')} />
-			{moduleProps.imageUrl === "" ? (
-          <IconButton component="span" onClick={handleClickOpen}>
-              <GetApp/>
-              Image
-          </IconButton>
-      ) :
-      <TextField className={styles.title} label="Image URL" variant="outlined" value={moduleProps.imageUrl} onChange={handleChange("imageUrl")} />
-      }
+			<Box paddingBottom="15px">
+				{moduleProps.imageUrl === "" ? (
+						<IconButton component="span" onClick={handleClickOpen}>
+								<GetApp/>
+								Image
+						</IconButton>
+				) :
+				<TextField className={styles.title} label="Image URL" variant="outlined" value={moduleProps.imageUrl} onChange={handleChange("imageUrl")} />
+				}
+			</Box>
 			<Dialog open={dialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
                 <DialogContent>

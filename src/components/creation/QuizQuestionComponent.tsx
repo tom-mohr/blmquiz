@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
+import { Box, Container, Grid, IconButton, Paper, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import "./QuizQuestionComponent.css";
@@ -43,32 +43,36 @@ export default function QuizQuestionComponent({ props, callback }) {
     }
 
     return (
-        <div className={"question-div"}>
-            <TextField variant="outlined" value={questionProps.title} onChange={handleChange("title")} />
-            <Grid container direction="row" justify="space-around" alignItems="baseline" spacing={3}>
-                {questionProps.possibleAnswers.map((answer, index) => (
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
+                <TextField variant="outlined" value={questionProps.title} onChange={handleChange("title")} />
+            </Grid>
+            {questionProps.possibleAnswers.map((answer, index) => (
+                <Box margin="auto" width="35%" paddingTop="8px">
                     <Grid item xs={6}>
                         <AnswerCardComponent props={answer} extraProps={props.scores} callback={updateAnswer}/>
                     </Grid>
-                ))}
-                <Grid item xs={6}>
-                    <IconButton component="span" onClick={addAnswer}>
-                        <Add/>
-                        Add Answer
-                    </IconButton>
-                </Grid>
+                </Box>
+            ))}
+            <Grid item xs={6}>
+                <IconButton component="span" onClick={addAnswer}>
+                    <Add/>
+                    Add Answer
+                </IconButton>
             </Grid>
-        </div>
+        </Grid>
     );
 }
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         container: {
-            display: "flex",
-            direction: "column",
             justify: "center",
             alignItems: "center",
         },
+        padding: {
+            padding: theme.spacing(2),
+            textAlign: 'center',
+          },
     }),
 );

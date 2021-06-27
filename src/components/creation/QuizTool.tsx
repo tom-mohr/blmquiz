@@ -82,7 +82,7 @@ export default function QuizTool({ props, callback }) {
     return (
         <Grid container className={styles.container} spacing={6}>
             <Grid item xs={12}>
-                <Paper elevation={4}>
+                <Paper className={styles.paper} elevation={4}>
                     <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
                         {quizProps.scoreNames.map((scoreName, index) => (
                             <Grid item>
@@ -99,10 +99,10 @@ export default function QuizTool({ props, callback }) {
                 </Paper>
             </Grid>
             <Grid item xs={12}>
-                <Paper elevation={4}>
-                    <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+                <Paper className={styles.paper} elevation={4}>
+                    <Grid container spacing={3}>
                         {quizProps.questions.map((question, index) => (
-                            <Grid item>
+                            <Grid item xs={12}>
                                 {getQuestionComponentFromQuestion(question)}
                             </Grid>
                         ))}
@@ -116,7 +116,7 @@ export default function QuizTool({ props, callback }) {
                 </Paper>
             </Grid>
             <Grid item xs={12}>
-                <Paper elevation={4}>
+                <Paper className={styles.paper} >
                     <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
                         {quizProps.results.map((result, index) => (
                             <Grid item>
@@ -143,6 +143,10 @@ const useStyles = makeStyles((theme: Theme) =>
             direction: "column",
             justify: "center",
             alignItems: "center",
+        },
+        paper: {
+            textAlign: 'center',
+            elevation: 4,
         },
     }),
 );

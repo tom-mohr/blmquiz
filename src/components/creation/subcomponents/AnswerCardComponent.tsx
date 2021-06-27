@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, TextField, Typography } from "@material-ui/core";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Paper, TextField, Typography } from "@material-ui/core";
 import { GetApp } from "@material-ui/icons";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { QuizPossibleAnswer } from "../../../logic/quiz";
@@ -41,7 +41,9 @@ export default function AnswerCardComponent({ props, extraProps, callback }) {
 
     return (
         <Paper className={styles.paper}>
-            <TextField className={styles.title} label="Answer" variant="outlined" value={answer.title} onChange={handleTitle} />
+            <Box width="80%">
+                <TextField className={styles.title} label="Answer" variant="outlined" value={answer.title} onChange={handleTitle} />
+            </Box>
             {answer.imageUrl === "" ? (
                 <IconButton component="span" onClick={handleClickOpen}>
                     <GetApp/>
@@ -91,15 +93,16 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         title: {
             margin: theme.spacing(1),
-            width: 200
+            width: 300
         },
         formControl: {
             margin: theme.spacing(1),
             width: 65
         },
         paper: {
-            width: 250,
+            width: 350,
             minHeight: 120,
+            flexDirection: "column",
             justify: "center",
             alignItems: "center",
         },
