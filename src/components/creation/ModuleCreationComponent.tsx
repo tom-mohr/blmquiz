@@ -167,13 +167,13 @@ export default function ModuleCreationComponent({ props }) {
 						</Grid>
 					</Paper>
 					<Grid container>
-						<Grid item xs={12}>
+						<Grid item xs={12} className={styles.button}>
 							<Button fullWidth={true} variant={"outlined"} color={"primary"} onClick={props.onBackButtonClicked}>
 								<Close fontSize="large" />
 								Cancel
 							</Button>
 						</Grid>
-						<Grid item xs={12}>
+						<Grid item xs={12} className={styles.button}>
 							<Button fullWidth={true} variant={"contained"} color={"primary"} onClick={publish}>
 								<Publish fontSize="large" />
 								Publish
@@ -218,10 +218,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		paper: {
 			textAlign: 'center',
-			backgroundColor: "Gainsboro",
+			backgroundColor: "white",
 		},
 		title: {
 			margin: theme.spacing(2),
+		},
+		button: {
+			paddingTop: "5px",
 		},
 	}),
 );
