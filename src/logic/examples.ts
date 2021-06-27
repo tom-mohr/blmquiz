@@ -33,11 +33,12 @@ export const exampleModules: Module[] = [
                             {
                                 title: "Very important, I wash my hands all the time.",
                                 scoresDelta: [-2, -1, 1],
-                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/OCD_handwash.jpg/128px-OCD_handwash.jpg",
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/CPMC_Surgery_%28412142792%29.jpg/320px-CPMC_Surgery_%28412142792%29.jpg",
                             },
                             {
                                 title: "I shower once a week.",
                                 scoresDelta: [-1, -1, 0],
+                                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/OCD_handwash.jpg/128px-OCD_handwash.jpg",
                             },
                             {
                                 title: "Shower? What is that?",
@@ -52,10 +53,12 @@ export const exampleModules: Module[] = [
                             {
                                 title: "Democracy rules!",
                                 scoresDelta: [-1, -2, 1],
+                                imageUrl: "https://www.ksl-nrw.de/public/inline-images/mitbestimmung.png",
                             },
                             {
                                 title: "Politics is for nerds.",
                                 scoresDelta: [0, 2, 0],
+                                imageUrl: "https://t3.ftcdn.net/jpg/00/35/06/80/360_F_35068034_EeG6q5eo1LfAE5lSpCSKwNObyVmNlg0q.jpg",
                             },
                         ],
                     },
